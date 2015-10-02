@@ -69,6 +69,7 @@ public class QuizActivity extends AppCompatActivity {
         int question = mQuestionBank[mCurrentIndex].getTextResID();
         mQuestionTextView.setText(question);
 
+        //True Button
         mTrueButton = (Button) findViewById(R.id.true_button);
         mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +79,7 @@ public class QuizActivity extends AppCompatActivity {
 
         });
 
+        //False Button
         mFalseButton = (Button) findViewById(R.id.false_button);
         mFalseButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +88,10 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
+        //Cheat Button
+        //mCheat
 
+        //Next Button
         mNextButton = (ImageButton) findViewById(R.id.next_button);
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,6 +120,7 @@ public class QuizActivity extends AppCompatActivity {
                 //updateQuestion();
             }
         });
+
 
 
         //adding Listener to textView
