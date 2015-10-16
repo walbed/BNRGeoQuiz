@@ -51,20 +51,18 @@ public class QuizActivity extends AppCompatActivity {
 
         if (mIsCheater) {
             messagesResId = R.string.judgement_toast;
-        } else {
-
-
-        if (userPressedTrue == answerIsTrue)
-        {
-            messagesResId = R.string.correct_toast;
         }
-        else
-        {
-            messagesResId = R.string.incorrect_toast;
+        else {
+            if (userPressedTrue == answerIsTrue) {
+                messagesResId = R.string.correct_toast;
+            }
+            else {
+                messagesResId = R.string.incorrect_toast;
+            }
         }
-
         Toast.makeText(this, messagesResId, Toast.LENGTH_SHORT).show();
-    }}
+
+    }
 
 
     @Override
@@ -159,7 +157,7 @@ public class QuizActivity extends AppCompatActivity {
             return;
         }
 
-        if (requestCode != REQUEST_CODE_CHEAT){
+        if (requestCode == REQUEST_CODE_CHEAT){
             if (data == null){
                 return;
             }
