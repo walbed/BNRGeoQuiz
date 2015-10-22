@@ -22,8 +22,9 @@ public class CheatActivity extends AppCompatActivity {
     private boolean mAnswerIsTrue;
     private TextView mAnswerTextView;
     private Button mShowAnswer;
-    //private static final String KEY_HAS_CHEATED = "HAS_CHEATED";
+    private static final String KEY_HAS_CHEATED = "HAS_CHEATED";
     //private boolean isAnswerShown;
+    private boolean mIsCheater;
 
 
     public static Intent newIntent(Context packageContext, boolean answerIsTrue) {
@@ -44,6 +45,18 @@ public class CheatActivity extends AppCompatActivity {
 
         mAnswerTextView = (TextView) findViewById(R.id.answer_text_view);
 
+        mIsCheater = false;
+
+        if (savedInstanceState != null){
+            mIsCheater = savedInstanceState.getBoolean(KEY_HAS_CHEATED, mIsCheater);
+        }
+
+        if (mIsCheater)
+        {
+            setAnswerShownResult(mIsCheater);
+        }
+
+
         mShowAnswer = (Button) findViewById(R.id.show_answer_button);
         mShowAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +67,9 @@ public class CheatActivity extends AppCompatActivity {
                 else {
                     mAnswerTextView.setText(R.string.false_button);
                 }
+
+                mIsCheater = true;
+
                 setAnswerShownResult(true);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -92,6 +108,9 @@ public class CheatActivity extends AppCompatActivity {
                     mAnswerTextView.setVisibility(View.VISIBLE);
                     mShowAnswer.setVisibility(View.INVISIBLE);
                 }
+
+
+
 
             }
         });
@@ -139,12 +158,12 @@ public class CheatActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*
+
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState){
         super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putString(KEY_HAS_CHEATED, EXTRA_ANSWER_SHOWN);
-    }*/
+        savedInstanceState.putBoolean(KEY_HAS_CHEATED, mIsCheater);
+    }
 
 
 }
